@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Quiz Detail</h2>
+  
+    <div *ngIf="quiz">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ quiz.title }}</h5>
+          <p class="card-text">{{ quiz.description }}</p>
+          <p class="card-text">Type: {{ quiz.type }}</p>
+          <p class="card-text">Passing Score: {{ quiz.passingScore }}</p>
+        </div>
+      </div>
+  
+      <h3>Questions</h3>
+      <ul>
+        <li *ngFor="let question of quiz.questions">
+          <p><strong>Question:</strong> {{ question.text }}</p>
+          <p><strong>Correct Answer:</strong> {{ question.correctAnswer }}</p>
+          <p><strong>Explanation:</strong> {{ question.explanation }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

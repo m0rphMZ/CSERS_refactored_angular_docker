@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Quizzes - Admin Side</h2>
+
+  <div *ngIf="quizzes.length === 0">
+    <p>No quizzes available.</p>
+  </div>
+
+  <div *ngFor="let quiz of quizzes">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" style="cursor: pointer; color: #007bff;" (click)="navigateToQuizDetail(quiz.id)">{{ quiz.title }}</h5>
+        <p class="card-text">{{ quiz.description }}</p>
+        <p class="card-text">Type: {{ quiz.type }}</p>
+        <p class="card-text">Passing Score: {{ quiz.passingScore }}</p>
+      </div>
+    </div>
+  </div>
+</div>

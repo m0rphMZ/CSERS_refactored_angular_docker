@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Training Contents - Admin Side</h2>
+    
+    <div *ngIf="trainingContents.length === 0">
+      <p>No training contents available.</p>
+    </div>
+    
+    <div *ngFor="let content of trainingContents">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ content.title }}</h5>
+          <p class="card-text">{{ content.description }}</p>
+          <p class="card-text">Type: {{ content.type }}</p>
+          <p class="card-text">Created Date: {{ content.createdDate | date }}</p>
+          <p class="card-text">Estimated Time: {{ content.estimatedTime }} minutes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

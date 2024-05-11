@@ -1,0 +1,32 @@
+<div>
+    <h2>Add Training Content</h2>
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="trainingContent.title" name="title" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" [(ngModel)]="trainingContent.description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="type">Type:</label>
+        <select class="form-control" id="type" [(ngModel)]="trainingContent.type" name="type" required>
+          <option value="VIDEO">Video</option>
+          <option value="DOCUMENT">Document</option>
+          <option value="PRESENTATION">Presentation</option>
+          <option value="EXTERNAL_URL">External URL</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="estimatedTime">Estimated Time (in minutes):</label>
+        <input type="number" class="form-control" id="estimatedTime" [(ngModel)]="trainingContent.estimatedTime" name="estimatedTime" required>
+      </div>
+      <div class="form-group">
+        <label for="contentUrl">Content URL:</label>
+        <input type="text" class="form-control" id="contentUrl" [(ngModel)]="trainingContent.contentUrl" name="contentUrl" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Training Content</button>
+    </form>
+  </div>
+  

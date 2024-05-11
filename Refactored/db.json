@@ -1,0 +1,74 @@
+{
+  "appartement": [
+    {
+      "id": "1",
+      "apartNum": "251",
+      "floorNum": 44,
+      "surface": "55",
+      "terrace": "yes",
+      "surfaceTerrace": "",
+      "category": "test",
+      "description": "Consectetur perfere",
+      "residence": {
+        "id": 1,
+        "name": "El fel",
+        "address": "Borj Cedria",
+        "image": "../../assets/images/residence1.jpg"
+      }
+    },
+    {
+      "id": "3642",
+      "apartNum": "3",
+      "description": "qsd",
+      "residence": {
+        "id": 1,
+        "name": "El fel",
+        "address": "Borj Cedria",
+        "image": "../../assets/images/residence1.jpg"
+      }
+    },
+    {
+      "apartNum": "74",
+      "description": "xxx",
+      "residence": {
+        "id": 1,
+        "name": "El fel",
+        "address": "Borj Cedria",
+        "image": "../../assets/images/residence1.jpg"
+      },
+      "id": "179c"
+    }
+  ],
+  "Showroom": [
+    {
+      "id": "1",
+      "matricule": "442tunis233",
+      "nom": "mercedes",
+      "status": true
+    },
+    {
+      "id": "ba8f",
+      "matricule": "ccc",
+      "nom": "cccc",
+      "status": false
+    },
+    {
+      "id": "c4e8",
+      "matricule": "gg",
+      "nom": "gg",
+      "status": "true"
+    },
+    {
+      "id": "3d55",
+      "matricule": "FDfdfddf",
+      "nom": "qsd",
+      "status": true
+    },
+    {
+      "id": "cca1",
+      "matricule": "DDFF",
+      "nom": "qqsd",
+      "status": true
+    }
+  ]
+}

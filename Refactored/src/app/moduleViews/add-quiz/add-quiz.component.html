@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>Add Quiz</h2>
+
+  <form [formGroup]="newQuizForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" class="form-control" formControlName="title">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="passingScore">Passing Score</label>
+      <input type="number" id="passingScore" class="form-control" formControlName="passingScore">
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select id="type" class="form-control" formControlName="type">
+        <option value="" disabled>Select Quiz Type</option>
+        <option value="TRUE_FALSE">True/False</option>
+        <option value="FILL_IN_THE_BLANK">Fill in the Blank</option>
+        <option value="MATCHING">Matching</option>
+        <option value="MULTIPLE_CHOICE">Multiple Choice</option>
+        <option value="ESSAY">Essay</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="trainingContent">Training Content</label>
+      <select id="trainingContent" class="form-control" formControlName="trainingContentId">
+        <option value="" disabled>Select Training Content</option>
+        <option *ngFor="let content of trainingContents" [value]="content.id">{{ content.title }}</option>
+      </select>
+    </div>
+
+    <div formArrayName="questions">
+      <div *ngFor="let questionGroup of questionsFormArray.controls; let i = index" class="question-group" [formGroupName]="i">
+        <!-- Use formGroupName directive to bind to each question's form group -->
+
+        <div class="form-group">
+          <label for="questionText">Question {{ i + 1 }}</label>
+          <input type="text" id="questionText" class="form-control" formControlName="text">
+          <!-- Use formControlName to bind to the 'text' control of the current question -->
+        </div>
+
+        <div class="form-group">
+          <label for="correctAnswer">Correct Answer</label>
+          <input type="text" id="correctAnswer" class="form-control" formControlName="correctAnswer">
+          <!-- Use formControlName to bind to the 'correctAnswer' control of the current question -->
+        </div>
+
+        <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="addQuestion()">Add Question</button>
+
+    <button type="submit" class="btn btn-success">Create Quiz</button>
+  </form>
+</div>
