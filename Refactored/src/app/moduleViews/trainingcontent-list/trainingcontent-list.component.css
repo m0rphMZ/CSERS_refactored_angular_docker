@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Training Content Cards */
+.training-card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.training-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.training-card .card-title {
+  margin-bottom: 1rem;
+}
+
+.training-card .card-text {
+  font-size: 0.9rem;
+}
+
+/* Training Details */
+.training-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.badge {
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+}
+
+/* Card Image Placeholder (Modified) */
+.card-img-top {
+  height: 150px; /* Adjust the height as needed */
+  overflow: hidden;
+  border-radius: 10px 10px 0 0; 
+}
+
+.card-img-top img {
+  width: 100%; /* Ensure the image fills the container width */
+  height: auto;  /* Maintain the aspect ratio of the image */
+  /* Additional options to experiment with:
+     - object-fit: contain; (Fit the image inside the container while preserving aspect ratio)
+     - object-fit: cover;  (Fill the entire container, potentially cropping the image)
+  */
+}

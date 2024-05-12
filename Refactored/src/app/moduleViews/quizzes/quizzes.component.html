@@ -1,17 +1,29 @@
-<div class="container">
-  <h2>Quizzes - Admin Side</h2>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Quizzes - Admin View</h2>
 
-  <div *ngIf="quizzes.length === 0">
+  <div *ngIf="quizzes.length === 0" class="no-quizzes-message">
     <p>No quizzes available.</p>
+    <button routerLink="/addquiz" class="btn btn-primary">Add Quiz</button>
   </div>
 
-  <div *ngFor="let quiz of quizzes">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title" style="cursor: pointer; color: #007bff;" (click)="navigateToQuizDetail(quiz.id)">{{ quiz.title }}</h5>
-        <p class="card-text">{{ quiz.description }}</p>
-        <p class="card-text">Type: {{ quiz.type }}</p>
-        <p class="card-text">Passing Score: {{ quiz.passingScore }}</p>
+  <div class="row">
+    <div *ngFor="let quiz of quizzes" class="col-md-6 col-lg-4 mb-4">
+      <div class="card quiz-card h-100"> <div class="card-body d-flex flex-column">
+            <div class="card-title-container">
+              <h5 class="card-title" (click)="navigateToQuizDetail(quiz.id)">{{ quiz.title }}</h5>
+            </div>
+            <p class="card-text flex-grow-1">{{ quiz.description }}</p>
+
+            <div class="quiz-details mt-auto"> 
+              <span class="badge bg-secondary">{{ quiz.type }}</span>
+              <span class="badge bg-info text-dark">Passing Score: {{ quiz.passingScore }}%</span>
+            </div>
+
+            <div class="quiz-actions mt-2">
+              <button class="btn btn-sm btn-outline-secondary" >Edit</button>
+              <button class="btn btn-sm btn-outline-danger" >Delete</button>
+            </div>
+          </div>
       </div>
     </div>
   </div>

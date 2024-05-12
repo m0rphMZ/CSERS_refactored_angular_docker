@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-quiz.component.css']
 })
 export class AddQuizComponent implements OnInit {
+
+  showSuccessMessage = false; // Add this variable
+
+
   newQuizForm: FormGroup;
   trainingContents: TrainingContent[] = [];
 
@@ -65,13 +69,26 @@ export class AddQuizComponent implements OnInit {
   onSubmit() {
     if (this.newQuizForm.valid) {
       const newQuizData: Quiz = this.newQuizForm.value;
+
       this.quizService.createQuiz(newQuizData).subscribe(
         (createdQuiz) => {
           console.log('Quiz created successfully:', createdQuiz);
-          this.router.navigate(['/quizzes']); // Redirect to quizzes list
+
+          // Show success message and redirect
+          this.showSuccessMessage = true;
+          setTimeout(() => {
+            this.router.navigate(['/quizzes']);
+            this.showSuccessMessage = false; // Hide success message after redirect (optional)
+          }, 1500); // Redirect after 1.5 seconds
+
+          // Optionally reset the form after successful submission
+          // this.newQuizForm.reset();
         },
         (error) => {
           console.error('Error creating quiz:', error);
+
+          // Handle errors here (display an error message, etc.)
+          // ... your error handling logic ...
         }
       );
     }

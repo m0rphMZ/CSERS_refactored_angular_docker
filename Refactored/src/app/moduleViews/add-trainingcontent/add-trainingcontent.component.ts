@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TrainingContent } from '../../models/training-content.model';
 import { TrainingContentService } from '../../services/training-content.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-trainingcontent',
@@ -8,6 +9,9 @@ import { TrainingContentService } from '../../services/training-content.service'
   styleUrls: ['./add-trainingcontent.component.css']
 })
 export class AddTrainingcontentComponent {
+
+  showSuccessMessage = false;
+
   trainingContent: TrainingContent = {
     id: 0,
     title: '',
@@ -22,19 +26,31 @@ export class AddTrainingcontentComponent {
     videoDuration: 0
   };
 
-  constructor(private trainingContentService: TrainingContentService) {}
+  constructor(private trainingContentService: TrainingContentService, private router: Router) {}
 
   onSubmit() {
-    // Here, you can map the string type from the form to your desired enum value
-    // For simplicity, I'm directly using the string value
     this.trainingContentService.createTrainingContent(this.trainingContent).subscribe(
       (response) => {
         console.log('Training content created successfully:', response);
-        // Reset the form or perform other actions after successful creation
+
+        // Show success message
+        this.showSuccessMessage = true;
+
+        // Redirect after a short delay
+        setTimeout(() => {
+          this.router.navigate(['/training-content']);
+          this.showSuccessMessage = false; // Hide success message after redirect (optional)
+        }, 1500); 
+
+        // Optionally reset the form
+        // this.trainingContent = { /* ... default values ... */ };
+        // or
+        // this.trainingForm.reset(); // Assuming you have #trainingForm="ngForm" in your template
       },
       (error) => {
         console.error('Error creating training content:', error);
-        // Handle error accordingly
+        // Handle the error (e.g., display an error message to the user)
+        // ... your error handling logic ...
       }
     );
   }

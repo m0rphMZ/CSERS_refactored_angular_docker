@@ -1,64 +1,72 @@
-<div class="container">
-  <h2>Add Quiz</h2>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Create a New Quiz</h2>
 
-  <form [formGroup]="newQuizForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+  <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+    Quiz created successfully!
+  </div>
+
+  <form [formGroup]="newQuizForm" (ngSubmit)="onSubmit()" class="quiz-form">
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Quiz Title" required>
       <label for="title">Title</label>
-      <input type="text" id="title" class="form-control" formControlName="title">
     </div>
-
-    <div class="form-group">
+    
+    <div class="form-floating mb-3">
+      <textarea id="description" class="form-control" formControlName="description" placeholder="Description" style="height: 100px" required></textarea>
       <label for="description">Description</label>
-      <textarea id="description" class="form-control" formControlName="description"></textarea>
     </div>
 
-    <div class="form-group">
-      <label for="passingScore">Passing Score</label>
-      <input type="number" id="passingScore" class="form-control" formControlName="passingScore">
-    </div>
-
-    <div class="form-group">
-      <label for="type">Type</label>
-      <select id="type" class="form-control" formControlName="type">
-        <option value="" disabled>Select Quiz Type</option>
-        <option value="TRUE_FALSE">True/False</option>
-        <option value="FILL_IN_THE_BLANK">Fill in the Blank</option>
-        <option value="MATCHING">Matching</option>
-        <option value="MULTIPLE_CHOICE">Multiple Choice</option>
-        <option value="ESSAY">Essay</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="trainingContent">Training Content</label>
-      <select id="trainingContent" class="form-control" formControlName="trainingContentId">
-        <option value="" disabled>Select Training Content</option>
-        <option *ngFor="let content of trainingContents" [value]="content.id">{{ content.title }}</option>
-      </select>
-    </div>
-
-    <div formArrayName="questions">
-      <div *ngFor="let questionGroup of questionsFormArray.controls; let i = index" class="question-group" [formGroupName]="i">
-        <!-- Use formGroupName directive to bind to each question's form group -->
-
-        <div class="form-group">
-          <label for="questionText">Question {{ i + 1 }}</label>
-          <input type="text" id="questionText" class="form-control" formControlName="text">
-          <!-- Use formControlName to bind to the 'text' control of the current question -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="form-floating">
+          <input type="number" class="form-control" id="passingScore" formControlName="passingScore" placeholder="Passing Score" required>
+          <label for="passingScore">Passing Score (%)</label>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="correctAnswer">Correct Answer</label>
-          <input type="text" id="correctAnswer" class="form-control" formControlName="correctAnswer">
-          <!-- Use formControlName to bind to the 'correctAnswer' control of the current question -->
+      <div class="col-md-6 mb-3">
+        <div class="form-floating">
+          <select id="type" class="form-select" formControlName="type" required>
+            <option value="" disabled>Select Quiz Type</option>
+            <option value="TRUE_FALSE">True/False</option>
+            <option value="FILL_IN_THE_BLANK">Fill in the Blank</option>
+            <option value="MATCHING">Matching</option>
+            <option value="MULTIPLE_CHOICE">Multiple Choice</option>
+            <option value="ESSAY">Essay</option>
+          </select>
+          <label for="type">Type</label>
         </div>
-
-        <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="addQuestion()">Add Question</button>
+    <div class="form-floating mb-3">
+      <select id="trainingContent" class="form-select" formControlName="trainingContentId" required>
+        <option value="" disabled>Select Training Content</option>
+        <option *ngFor="let content of trainingContents" [value]="content.id">{{ content.title }}</option>
+      </select>
+      <label for="trainingContent">Training Content</label>
+    </div>
 
-    <button type="submit" class="btn btn-success">Create Quiz</button>
+    <div formArrayName="questions" class="question-list">
+      <div *ngFor="let questionGroup of questionsFormArray.controls; let i = index" class="question-item mb-3" [formGroupName]="i">
+        <h3>Question {{ i + 1 }}</h3>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" formControlName="text" placeholder="Question Text" required>
+          <label for="questionText">Question Text</label>
+        </div>
+
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" formControlName="correctAnswer" placeholder="Correct Answer" required>
+          <label for="correctAnswer">Correct Answer</label>
+        </div>
+
+        <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Remove</button>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+      <button type="button" class="btn btn-secondary" (click)="addQuestion()">Add Question</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!newQuizForm.valid">Create Quiz</button>
+    </div>
   </form>
 </div>

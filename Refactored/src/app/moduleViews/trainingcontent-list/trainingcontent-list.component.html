@@ -1,20 +1,29 @@
-<div class="container">
-    <h2>Training Contents - Admin Side</h2>
-    
-    <div *ngIf="trainingContents.length === 0">
-      <p>No training contents available.</p>
-    </div>
-    
-    <div *ngFor="let content of trainingContents">
-      <div class="card">
-        <div class="card-body">
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Training Contents - Admin View</h2>
+
+  <div *ngIf="trainingContents.length === 0" class="no-content-message">
+    <p>No training content available.</p>
+    <button routerLink="/addtrainingcontent" class="btn btn-primary">Add Content</button>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let content of trainingContents" class="col-md-6 col-lg-4 mb-4">
+      <div class="card training-card h-100" >
+        <div class="card-body d-flex flex-column">
+          <div class="card-img-top">
+            <img *ngIf="content.type === 'VIDEO'" src="../../assets/images/video.png" alt="Video Placeholder">
+            <img *ngIf="content.type === 'DOCUMENT'" src="../../assets/images/document.png" alt="Document Placeholder">
+            <img *ngIf="content.type === 'PRESENTATION'" src="../../assets/images/presentation.png" alt="Presentation Placeholder">
+            <img *ngIf="content.type === 'EXTERNAL_URL'" src="../../assets/images/external.png" alt="External Link Placeholder">
+          </div> 
           <h5 class="card-title">{{ content.title }}</h5>
-          <p class="card-text">{{ content.description }}</p>
-          <p class="card-text">Type: {{ content.type }}</p>
-          <p class="card-text">Created Date: {{ content.createdDate | date }}</p>
-          <p class="card-text">Estimated Time: {{ content.estimatedTime }} minutes</p>
+          <p class="card-text flex-grow-1">{{ content.description }}</p>
+          <div class="training-details mt-auto"> 
+            <span class="badge bg-secondary">{{ content.type }}</span>
+            <span class="badge bg-info text-dark"><i class="far fa-clock"></i> {{ content.estimatedTime }} mins</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

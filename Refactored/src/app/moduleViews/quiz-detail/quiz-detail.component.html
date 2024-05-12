@@ -1,24 +1,25 @@
-<div class="container">
-    <h2>Quiz Detail</h2>
+<div class="container mt-5">
+  <h2 class="quiz-title text-center mb-4">{{ quiz?.title }}</h2>
   
-    <div *ngIf="quiz">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ quiz.title }}</h5>
-          <p class="card-text">{{ quiz.description }}</p>
-          <p class="card-text">Type: {{ quiz.type }}</p>
-          <p class="card-text">Passing Score: {{ quiz.passingScore }}</p>
+  <div *ngIf="quiz" class="quiz-detail-card">
+    <div class="quiz-info">
+      <p class="quiz-description">{{ quiz.description }}</p>
+      <div class="quiz-details">
+        <span class="badge bg-secondary">{{ quiz.type }}</span>
+        <span class="badge bg-info text-dark">Passing Score: {{ quiz.passingScore }}%</span>
+      </div>
+    </div>
+    
+    <div class="questions-section">
+      <h3>Questions</h3>
+      <div class="question" *ngFor="let question of quiz.questions; let i = index">
+        <div class="question-number">{{ i + 1 }}</div>
+        <div class="question-content">
+          <p><strong>{{ question.text }}</strong></p>
+          <p class="correct-answer">Correct Answer: {{ question.correctAnswer }}</p>
+          <p *ngIf="question.explanation" class="explanation">Explanation: {{ question.explanation }}</p>
         </div>
       </div>
-  
-      <h3>Questions</h3>
-      <ul>
-        <li *ngFor="let question of quiz.questions">
-          <p><strong>Question:</strong> {{ question.text }}</p>
-          <p><strong>Correct Answer:</strong> {{ question.correctAnswer }}</p>
-          <p><strong>Explanation:</strong> {{ question.explanation }}</p>
-        </li>
-      </ul>
     </div>
   </div>
-  
+</div>
